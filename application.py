@@ -109,7 +109,7 @@ def merge(all_files):
 
 def downloadFile():
     path = "sorted.pdf"
-    send_file(path, as_attachment=True)
+    return send_file(path, as_attachment=True)
 
 
 @app.route("/")
@@ -126,8 +126,8 @@ def upload():
         merge(all_files=all_files)
         remove_blank()
         name_sort()
-        downloadFile()
-        return render_template("index.html")
+        return downloadFile()
+#         return render_template("index.html")
 
 
 if __name__ == "__main__":
