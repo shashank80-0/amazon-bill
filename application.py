@@ -11,6 +11,7 @@ CORS(app)
 
 
 def name_sort():
+    print("in name sort")
     new_file = PdfFileWriter()
 
     file_object = PdfFileReader("removed-blank.pdf")
@@ -68,6 +69,7 @@ def name_sort():
 
 
 def remove_blank():
+    print("in remove_blank")
     new_file = PdfFileWriter()
     file_object = PdfFileReader("merged.pdf")
 
@@ -96,6 +98,7 @@ def remove_blank():
 
 
 def merge(all_files):
+    print("in merge")
     mergeFile = PdfFileMerger()
 
     for file in all_files:
@@ -106,7 +109,7 @@ def merge(all_files):
 
 def downloadFile():
     path = "sorted.pdf"
-    return send_file(path, as_attachment=True)
+    send_file(path, as_attachment=True)
 
 
 @app.route("/")
@@ -123,7 +126,8 @@ def upload():
         merge(all_files=all_files)
         remove_blank()
         name_sort()
-        return downloadFile()
+        downloadFile()
+        return render_template("index.html")
 
 
 if __name__ == "__main__":
